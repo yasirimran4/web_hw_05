@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model HomeViewModel
+
+<h1>Books</h1>
+<form method="post" action="/Home/AddBook">
+    <label>Title</label>
+    <input type="text" name="title"  placeholder="Enter title.."/>
+    <label>Price</label>
+    <input type="number" name="price" placeholder="Enter price.."/>
+    <select name="authorId">
+        @foreach (Author author in Model.Authors)
+        {
+            <option>@author.Id- @author.Name</option>
+        }
+    </select>
+    <input type="submit" class="btn btn-primary"/>
+</form>
+
+<form method="post" action="/Home/AddAuthor">
+    <label>Name</label>
+    <input type="text" name="name"  placeholder="Enter name.."/>
+    <label>Price</label>
+    <input type="text" name="country" placeholder="Enter country.."/>
+    <input type="submit" class="btn btn-primary"/>
+</form>
+
+@foreach(var homeModel in Model.Books)
+{
+    <p>@homeModel.Title - @homeModel.Price - @homeModel.AuthorName </p>
+}
+
+@section Styles{
+    padding: 10,
+    margin : 10,
+    borderWidth : 1
+}
